@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import './App.css';
-import About from './components/About';
 import Navbar from './components/Navbar';
 import TextForm from './components/TextForm';
 import Alert from './components/Alert';
+import About from './components/About';
 import {
   BrowserRouter as Router,
   Switch,
@@ -52,7 +52,7 @@ function App() {
       setMode("dark");
       document.body.style.backgroundColor = '#042743';
       showAlert("Dark Mode has been enabled", "success")
-      document.title = "TextUtils - Dark Mode" // u can dynamically update title butdont do it unless its like facebook showing how many messages are there, it shows like facebook(10)
+      // document.title = "TextUtils - Dark Mode" // u can dynamically update title butdont do it unless its like facebook showing how many messages are there, it shows like facebook(10)
       // dont do this, this is just for knowledge
       // setInterval(() => {
       //   document.title = "TextUtils is amazing mode"
@@ -65,7 +65,7 @@ function App() {
       document.body.style.backgroundColor = 'white';
       setButtonColor('primary')
       showAlert("Light Mode has been enabled", "success")
-      document.title = "TextUtils - Light Mode"
+      // document.title = "TextUtils - Light Mode"
     }
   }
   return (
@@ -77,10 +77,10 @@ function App() {
       <div className="container my-3">
       <Switch>
           <Route exact path="/about">
-            <About />
+            <About mode={mode}/>
           </Route>
           <Route exact path="/">
-          <TextForm heading='Enter the text to analyze' mode={mode} showAlert={showAlert} buttonColor={buttonColor}/>
+          <TextForm heading='Try TextUtils' mode={mode} showAlert={showAlert} buttonColor={buttonColor}/>
           </Route>
         </Switch>
       </div>

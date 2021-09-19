@@ -61,12 +61,13 @@ export default function TextForm(props) {
     const [text, setText] = useState('');
     // text = "new text"; // Wrong way to change the state
     // setText("new text"); // Correct way to change the state
+    document.title = "TextUtils | Home"
     return (
         <>
         <div className="container" style={{color: props.mode==='light'?'#042743':'white'}}>
-            <h1>{props.heading}</h1>
+            <h1 className="mb-4">{props.heading}</h1>
             <div className="mb-3">
-                <textarea className="form-control" value={text} onChange={handleOnChange} style={{backgroundColor: props.mode==='light'?'white':'grey', color: props.mode==='light'?'#042743':'white'}} id="myBox" rows="8"></textarea>
+                <textarea className="form-control" value={text} onChange={handleOnChange} style={{backgroundColor: props.mode==='light'?'white':'rgba(255,255,255,.3)', color: props.mode==='light'?'#042743':'white'}} id="myBox" rows="8"></textarea>
                 {/* if we did not used onChange here then further user couldnot provide input as value={text} is given*/}
             </div>
             <button className={`btn btn-${props.buttonColor} mx-2 my-2`} onClick={handleUpClick}>Convert to UPPERCASE</button>
@@ -81,11 +82,11 @@ export default function TextForm(props) {
             <h2>Your text summary</h2>
             <p>{text.length} characters(with spaces)</p>
             <p>{text.length - substrCount(" ")} characters(without spaces)</p>
-            <p>{text.split(" ").length-1} words</p>
+            <p>{text.split(" ").filter((element)=>{return element.length!==0}).length} words</p>
             <p>{substrCount(".")} sentences</p>
-            <p>{0.008 * text.split(" ").length} Minutes read</p> {/* 0.008 is googled number (1/125) */}
+            <p>{0.008 * text.split(" ").filter((element)=>{return element.length!==0}).length} Minutes read</p> {/* 0.008 is googled number (1/125) */}
             <h3>Preview</h3>
-            <p>{text.length>0? text:"Enter something in textarea above to preview it here"}</p>
+            <p>{text.length>0? text:"Nothing to preview"}</p>
         </div>
         </>
     )
